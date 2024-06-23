@@ -5,9 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b1acf5a-a2a7-4cfa-8ede-d0eec1ff959e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Froggie.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/Cars.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/KSU_1_LG7.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/KSU_1_LG7.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Froggie.py" beforeDir="false" afterPath="$PROJECT_DIR$/Froggie.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Froggie/Forward.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Froggie/Forward_Jump.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Froggie/Left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Froggie/Left_Jump.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Froggie/Right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Froggie/Right_Jump.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,13 +40,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Chris.Gestring\PycharmProjects\KSU_1_LG7\Scripts" />
