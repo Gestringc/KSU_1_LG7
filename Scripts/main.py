@@ -17,7 +17,8 @@ class AllSprites(pygame.sprite.Group):
 ## Game Window and Related Variables
 
 Game_Screen = pygame.display.set_mode((1500, 800))
-Game_Screen.fill(color= (0, 255, 255) )
+Game_Screen.fill(color= (0, 255, 255))
+pygame.display.set_caption("Froggie")  #can change title if we decide
 pygame.display.flip()
 victory = False
 
