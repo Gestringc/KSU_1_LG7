@@ -23,14 +23,14 @@ pygame.display.flip()
 victory = False
 #-----------------------------------------------------------------------------------------------------------------------
 ##### Here is where we will CREATE the car images with your code  ## *********************************************************************
-redCar = pygame.image.load("red.png").convert()
-redCar = pygame.transform.scale(redCar, (100, 100)) ## Adjust sizes as needed
+##redCar = pygame.image.load("red.png").convert()
+##redCar = pygame.transform.scale(redCar, (100, 100)) ## Adjust sizes as needed
 
-greenCar = pygame.image.load("green.png").convert()
-greenCar = pygame.transform.scale(greenCar, (100, 100)) ## Adjust sizes as needed
+##greenCar = pygame.image.load("green.png").convert()
+##greenCar = pygame.transform.scale(greenCar, (100, 100)) ## Adjust sizes as needed
 
-yellowCar = pygame.image.load("yellow.png").convert()
-yellowCar = pygame.transform.scale(yellowCar, (100, 100)) ## Adjust Sizes as needed
+##yellowCar = pygame.image.load("yellow.png").convert()
+##yellowCar = pygame.transform.scale(yellowCar, (100, 100)) ## Adjust Sizes as needed
 
 #************************************************************************************************************
 Clock = pygame.time.Clock()
