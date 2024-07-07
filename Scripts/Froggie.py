@@ -21,7 +21,7 @@ class Froggie(pygame.sprite.Sprite):
         self.image = self.animations["Forward"][self.frame_index]
         self.rect = self.image.get_rect(center = position)
         self.direction = pygame.math.Vector2((0, 0))
-        self.speed = 50
+        self.speed = 75
         self.collision_objects = 0 ##Collision_Group
         self.hitbox = self.rect.inflate(0, -self.rect.height/2)
         self.Jump_Sound = pygame.mixer.Sound("./Music/Jump2.mp3")
