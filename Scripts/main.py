@@ -3,11 +3,13 @@ import pygame
 import sys
 from Scripts.Froggie import Froggie
 from Cars import Car
+import pygame.freetype
 
 #-----------------------------------------------------------------------------------------------------------------------
 ## Initialization of pygame
 
 pygame.init()
+pygame.freetype.init()
 
 class AllSprites(pygame.sprite.Group):
     def __init__(self):
@@ -17,10 +19,12 @@ class AllSprites(pygame.sprite.Group):
 ## Game Window and Related Variables
 
 Game_Screen = pygame.display.set_mode((1500, 800))
+grass_image = pygame.image.load("./Images/Backgrounds/Grass1.jpg")
 Game_Screen.fill(color= (0, 255, 255))
 pygame.display.set_caption("Froggie")  #can change title if we decide
 pygame.display.flip()
 victory = False
+font = pygame.freetype.Font(None, 36)
 #-----------------------------------------------------------------------------------------------------------------------
 ##### Here is where we will CREATE the car images with your code  ## *********************************************************************
 ##redCar = pygame.image.load("red.png").convert()
@@ -48,10 +52,9 @@ Froggie = Froggie(Starting_Point, all_sprites)
 #-----------------------------------------------------------------------------------------------------------------------
 ## The back ground music is imported and played in a loop ##
 
-Froggie_Music = pygame.mixer.Sound("./Music/Froggie_Music.mp3")
-Froggie_Music.set_volume(1)
+Froggie_Music = pygame.mixer.Sound("./Music/Music1.mp3")
+Froggie_Music.set_volume(.2)
 Froggie_Music.play(-1)
-
 #-----------------------------------------------------------------------------------------------------------------------
 ## Primary Game Loop ##
 # Create clock to get delta time later.
@@ -66,7 +69,17 @@ while (True):
 # handle all sprites' updates
     all_sprites.update(Delta_Time)
 
-    Game_Screen.fill((0, 255, 255))
+    for i in range(0, 1500, grass_image.get_width()):
+        for j in range(0, 800, grass_image.get_height()):
+            Game_Screen.blit(grass_image, (i, j))
+
+    if Froggie.rect.y <= 0:
+        text_surface, rect = font.render("Froggie Lives!!!", (255,255,255), size=50)
+        Game_Screen.blit(text_surface,(Game_Screen.get_width() / 2 - rect.width / 2, Game_Screen.get_height() / 2 - rect.height / 2))
+        all_sprites.draw(Game_Screen)
+        pygame.display.flip()
+
+    ##Game_Screen.fill((0, 255, 255))
 #************************ Here we will create a loop for actually generating the cars based off
     # of time  ********************************************************
     ## for i in range (3): 3 being the number of roads
