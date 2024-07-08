@@ -66,6 +66,29 @@ cars = [Car(img, speed, pos) for img, speed, pos in zip(car_images, car_speeds, 
 road = pygame.image.load("./Images/Objects/road.png").convert_alpha()
 road_scale = pygame.transform.scale(road,(2000,80))
 
+barrel = pygame.image.load("./Images/Objects/barrel_1.png").convert_alpha()
+barrel_scale = pygame.transform.scale(barrel,(20,30))
+# barrel_scale_rect = pygame.Rect(0, 0,20,30) #determine location***
+
+barrier = pygame.image.load("./Images/Objects/barrier_4.png").convert_alpha()
+barrier_scale = pygame.transform.scale(barrier,(40,20))
+# barrier_scale_rect = pygame.Rect(0, 0, 40, 20) #determine location****
+
+bin = pygame.image.load("./Images/Objects/bin_open.png").convert_alpha()
+bin_scale = pygame.transform.scale(bin,(20, 30))
+# bin_scale_rect = pygame.Rect(0, 0, 20, 30)
+
+bush = pygame.image.load("./Images/Objects/green_bush.png").convert_alpha()
+bush_scale = pygame.transform.scale(bush, (35,30))
+# bush_scale_rect = pygame.Rect(0, 0, 35,30)
+
+tree1 = pygame.image.load("./Images/Objects/green_small_potted.png").convert_alpha()
+tree1_scale = pygame.transform.scale(tree1, (30,60))
+# tree1_scale_rect = pygame.Rect(0, 0, 30, 60)
+
+tree2 = pygame.image.load("./Images/Objects/tree_1.png").convert_alpha()
+tree2_scale = pygame.transform.scale(tree2, (30,80))
+# tree2_scale_rect = pygame.Rect(0, 0, 30, 80)
 
 #************************************************************************************************************
 Clock = pygame.time.Clock()
@@ -108,9 +131,17 @@ while (True):
         for j in range(0, 800, grass_image.get_height()):
             Game_Screen.blit(grass_image, (i, j))
 
+
+    #objects/decor
     Game_Screen.blit(road_scale, (-50, 150))
     Game_Screen.blit(road_scale, (-50, 400))
     Game_Screen.blit(road_scale, (-50, 650))
+    # Game_Screen.blit(barrel_scale,(80,50)) #add in later after roads/waterways are set
+    # Game_Screen.blit(barrier_scale,(150,50))
+    # Game_Screen.blit(bin_scale,(120,50))
+    # Game_Screen.blit(bush_scale,(100,80))
+    # Game_Screen.blit(tree1_scale,(170,50))
+    # Game_Screen.blit(tree2_scale,(210,40))
 
     if Froggie.rect.y <= 0:
         text_surface, rect = font.render("Froggie Lives!!!", (255,255,255), size=50)
