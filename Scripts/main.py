@@ -115,8 +115,8 @@ bush = pygame.image.load("./Images/Objects/green_bush.png").convert_alpha()
 bush_scale = pygame.transform.scale(bush, (35,30))
 # bush_scale_rect = pygame.Rect(0, 0, 35,30)
 
-tree1 = pygame.image.load("./Images/Objects/green_small_potted.png").convert_alpha()
-tree1_scale = pygame.transform.scale(tree1, (30,60))
+#tree1 = pygame.image.load("./Images/Objects/green_small_potted.png").convert_alpha()
+#tree1_scale = pygame.transform.scale(tree1, (30,60))
 # tree1_scale_rect = pygame.Rect(0, 0, 30, 60)
 
 tree2 = pygame.image.load("./Images/Objects/tree_1.png").convert_alpha()
