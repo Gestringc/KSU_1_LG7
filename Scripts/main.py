@@ -60,6 +60,13 @@ car_positions = [pygame.Rect(0, 150, 50, 50), pygame.Rect(0, 400, 50, 50),
                  pygame.Rect(0, 650, 50, 50)]
 cars = [Car(img, speed, pos) for img, speed, pos in zip(car_images, car_speeds, car_positions)]
 
+#**************************************************************************************************************
+#decor images
+
+road = pygame.image.load("./Images/Objects/road.png").convert_alpha()
+road_scale = pygame.transform.scale(road,(2000,80))
+
+
 #************************************************************************************************************
 Clock = pygame.time.Clock()
 ### create a list for car colors same as variable names above
@@ -100,6 +107,10 @@ while (True):
     for i in range(0, 1500, grass_image.get_width()):
         for j in range(0, 800, grass_image.get_height()):
             Game_Screen.blit(grass_image, (i, j))
+
+    Game_Screen.blit(road_scale, (-50, 150))
+    Game_Screen.blit(road_scale, (-50, 400))
+    Game_Screen.blit(road_scale, (-50, 650))
 
     if Froggie.rect.y <= 0:
         text_surface, rect = font.render("Froggie Lives!!!", (255,255,255), size=50)

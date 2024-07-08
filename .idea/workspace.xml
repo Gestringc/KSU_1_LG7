@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b1acf5a-a2a7-4cfa-8ede-d0eec1ff959e" name="Changes" comment="testing">
+      <change beforePath="$PROJECT_DIR$/.idea/KSU_1_LG7.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/KSU_1_LG7.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_23_2024_11_53_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_23_2024_11_53_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_7_2024_3_36_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_7_2024_3_36_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cars/green.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cars/red.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cars/yellow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Froggie.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Froggie.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scripts/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,19 +43,22 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2iDPjNp5UlfWAQWhDsATBWNeiJ0" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.Cars.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.Cars.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Chris.Gestring\PycharmProjects\KSU_1_LG7\Scripts" />
