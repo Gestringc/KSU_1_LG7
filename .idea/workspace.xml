@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b1acf5a-a2a7-4cfa-8ede-d0eec1ff959e" name="Changes" comment="testing">
+    <list default="true" id="4b1acf5a-a2a7-4cfa-8ede-d0eec1ff959e" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,7 +113,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-5b207ade9991-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.17890.14" />
+        <option value="bundled-python-sdk-48aec45f0201-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.17011.127" />
       </set>
     </attachedChunks>
   </component>
@@ -134,21 +134,21 @@
       <option name="project" value="LOCAL" />
       <updated>1719533910704</updated>
     </task>
-    <task id="LOCAL-00002" summary="testing">
+    <task id="LOCAL-00002" summary="Changes">
       <option name="closed" value="true" />
-      <created>1720404515905</created>
+      <created>1720411957650</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1720404515905</updated>
+      <updated>1720411957651</updated>
     </task>
-    <task id="LOCAL-00003" summary="testing">
+    <task id="LOCAL-00003" summary="Changes">
       <option name="closed" value="true" />
-      <created>1720407931030</created>
+      <created>1720412066295</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1720407931030</updated>
+      <updated>1720412066295</updated>
     </task>
     <option name="localTasksCounter" value="4" />
     <servers />
@@ -166,6 +166,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing" />
+    <MESSAGE value="Changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes" />
   </component>
 </project>
