@@ -8,8 +8,6 @@ import os ## Debug
 
 #-----------------------------------------------------------------------------------------------------------------------
 ## Defining and building of the player class. ##
-print(f'Current working directory: {os.getcwd()}')
-print(f'Exists? {os.path.isdir("./Images/Froggie")}')
 class Froggie(pygame.sprite.Sprite):
     def __init__ (self, position, groups):
         self.pos = pygame.math.Vector2(position)
