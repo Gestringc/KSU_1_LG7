@@ -11,15 +11,19 @@ import pygame.freetype
 pygame.init()
 pygame.freetype.init()
 
+
 class AllSprites(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
+
 
 class Car:
     def __init__(self, img, speed, rect):
         self.image = img
         self.speed = speed
         self.rect = rect
+
+
 #-----------------------------------------------------------------------------------------------------------------------
 ## Game Over Screen Function ##
 def end_game_screen(message):
@@ -50,6 +54,8 @@ def end_game_screen(message):
         pygame.display.flip()
 
     return False
+
+
 #-----------------------------------------------------------------------------------------------------------------------
 ## Function for generating log positions ##
 def generate_log_positions(pond_position, pond_size, log_size):
@@ -64,6 +70,8 @@ def generate_log_positions(pond_position, pond_size, log_size):
     ]
 
     return log_positions
+
+
 #-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -113,17 +121,15 @@ log_masks = [pygame.mask.from_surface(log) for _ in log_positions]
 #-----------------------------------------------------------------------------------------------------------------------
 ##### Here is where we will CREATE the car images with your code  ## *********************************************************************
 redCar = pygame.image.load("./Cars/red.png").convert_alpha()
-redCar_scale = pygame.transform.scale(redCar, (50, 50)) ## Adjust sizes as needed
-redCar_scale_rect = pygame.Rect(0, 800//3, 50, 50)
-
+redCar_scale = pygame.transform.scale(redCar, (50, 50))  ## Adjust sizes as needed
+redCar_scale_rect = pygame.Rect(0, 800 // 3, 50, 50)
 
 greenCar = pygame.image.load("./Cars/green.png").convert_alpha()
-greenCar_scale = pygame.transform.scale(greenCar, (50, 50))## Adjust sizes as needed
-greenCar_scale_rect = pygame.Rect(0, 800//2, 50, 50)
-
+greenCar_scale = pygame.transform.scale(greenCar, (50, 50))  ## Adjust sizes as needed
+greenCar_scale_rect = pygame.Rect(0, 800 // 2, 50, 50)
 
 yellowCar = pygame.image.load("./Cars/yellow.png").convert_alpha()
-yellowCar_scale = pygame.transform.scale(yellowCar, (50, 50)) ## Adjust Sizes as needed
+yellowCar_scale = pygame.transform.scale(yellowCar, (50, 50))  ## Adjust Sizes as needed
 yellowCar_scale_rect = pygame.Rect(0, 2 * (800 // 3), 50, 50)
 
 car_images = [redCar_scale, greenCar_scale, yellowCar_scale]
@@ -137,36 +143,46 @@ car_color_index = 0
 #decor images
 
 road = pygame.image.load("./Images/Backgrounds/road.jfif").convert_alpha()
-road_scale = pygame.transform.scale(road,(2000,80))
-
-barrel = pygame.image.load("./Images/Objects/barrel_1.png").convert_alpha()
-barrel_scale = pygame.transform.scale(barrel,(20,30))
-# barrel_scale_rect = pygame.Rect(0, 0,20,30) #determine location***
+road_scale = pygame.transform.scale(road, (2000, 80))
 
 barrier = pygame.image.load("./Images/Objects/barrier_4.png").convert_alpha()
-barrier_scale = pygame.transform.scale(barrier,(40,20))
-# barrier_scale_rect = pygame.Rect(0, 0, 40, 20) #determine location****
+barrier_scale = pygame.transform.scale(barrier, (40, 20))
+barrier_rects = []
+barrier_positions = [(500, 645), (455, 645), (1035, 145), (920, 145), (305, 400), (425, 400),(1265,645),(1155,645),(1265,460),(1310,460),(750,705),(695,705),(805,705),(650,400),(750,210),(580,210)]
+for pos in barrier_positions:
+    rect = barrier_scale.get_rect(topleft=pos)
+    barrier_rects.append(rect)
 
-bin = pygame.image.load("./Images/Objects/bin_open.png").convert_alpha()
-bin_scale = pygame.transform.scale(bin,(20, 30))
-# bin_scale_rect = pygame.Rect(0, 0, 20, 30)
 
 bush = pygame.image.load("./Images/Objects/green_bush.png").convert_alpha()
-bush_scale = pygame.transform.scale(bush, (35,30))
-# bush_scale_rect = pygame.Rect(0, 0, 35,30)
+bush_scale = pygame.transform.scale(bush, (35, 30))
+bush_rects = []
+bush_positions = [(150,235),(580,365),(525,500),(650,235),(690,235)]
+for pos in bush_positions:
+    rect2 = bush_scale.get_rect(topleft=pos)
+    bush_rects.append(rect2)
 
-#tree1 = pygame.image.load("./Images/Objects/green_small_potted.png").convert_alpha()
-#tree1_scale = pygame.transform.scale(tree1, (30,60))
-# tree1_scale_rect = pygame.Rect(0, 0, 30, 60)
+tree1 = pygame.image.load("./Images/Objects/green_small_potted.png").convert_alpha()
+tree1_scale = pygame.transform.scale(tree1, (30, 60))
+tree1_rects = []
+tree1_positions = [(1400,340), (1300,340), (1200,340), (1250,240),(1350,240), (1450,240)]
+for pos in tree1_positions:
+    rect3 = tree1_scale.get_rect(topleft=pos)
+    tree1_rects.append(rect3)
+
 
 tree2 = pygame.image.load("./Images/Objects/tree_1.png").convert_alpha()
-tree2_scale = pygame.transform.scale(tree2, (30,80))
-# tree2_scale_rect = pygame.Rect(0, 0, 30, 80)
+tree2_scale = pygame.transform.scale(tree2, (30, 80))
+tree2_rects = []
+tree2_positions = [(715,565),(20,310),(50,50),(200,50),(350,50),(500,50),(650,50),(800,50),(950,50),(1100,50),(1250,50),(1400,50)]
+for pos in tree2_positions:
+    rect4 = tree2_scale.get_rect(topleft=pos)
+    tree2_rects.append(rect4)
 
 #************************************************************************************************************
 Clock = pygame.time.Clock()
 car_colors = [redCar_scale, greenCar_scale, yellowCar_scale]
-counter = [0 ,0 ,0]
+counter = [0, 0, 0]
 ### Create the three time intervals the cars will generate intervals = [x, y, z]
 intervals = [2, 3, 5]
 roads = [150, 400, 650]  # these will define the three different roads
@@ -174,7 +190,7 @@ roads = [150, 400, 650]  # these will define the three different roads
 ## Froggie Sprite Generation  ##
 all_sprites = AllSprites()
 obstacle_sprites = pygame.sprite.Group()
-Starting_Point = (750, 800)# Bottom of the y-axis, middle of the x-axis
+Starting_Point = (750, 800)  # Bottom of the y-axis, middle of the x-axis
 Froggie = Froggie(Starting_Point, all_sprites)
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -194,7 +210,7 @@ while (True):
             sys.exit()
 
     Game_Screen.fill(color=(0, 255, 255))
-    Delta_Time = Clock.tick(60)/1000
+    Delta_Time = Clock.tick(60) / 1000
     #ticker = Clock.tick(10)
     # handle all sprites' updates
     all_sprites.update(Delta_Time)
@@ -207,12 +223,16 @@ while (True):
     Game_Screen.blit(road_scale, (-50, 150))
     Game_Screen.blit(road_scale, (-50, 400))
     Game_Screen.blit(road_scale, (-50, 650))
-    # Game_Screen.blit(barrel_scale,(80,50)) #add in later after roads/waterways are set
-    # Game_Screen.blit(barrier_scale,(150,50))
-    # Game_Screen.blit(bin_scale,(120,50))
-    # Game_Screen.blit(bush_scale,(100,80))
-    # Game_Screen.blit(tree1_scale,(170,50))
-    # Game_Screen.blit(tree2_scale,(210,40))
+
+    for idx, pos in enumerate(barrier_positions):
+        Game_Screen.blit(barrier_scale, pos)
+    for idx, pos in enumerate(bush_positions):
+        Game_Screen.blit(bush_scale,pos)
+    for idx, pos in enumerate(tree1_positions):
+        Game_Screen.blit(tree1_scale, pos)
+    for idx, pos in enumerate(tree2_positions):
+        Game_Screen.blit(tree2_scale,pos)
+
     Froggie_mask = pygame.mask.from_surface(Froggie.image)
     cars_to_remove = []
     pond_mask = pygame.mask.from_surface(pond)
@@ -245,7 +265,7 @@ while (True):
                 else:
                     pygame.quit()
                     sys.exit()
-            elif  Froggie.rect.y <= 0:
+            elif Froggie.rect.y <= 0:
                 result = end_game_screen("Froggie Lives!!!")
                 Froggie.pos = pygame.math.Vector2(Starting_Point)  # update the Vector2 position
                 Froggie.rect.topleft = Starting_Point  # update the topleft rect attribute
@@ -253,7 +273,7 @@ while (True):
                 pygame.mixer.pause()  # pause game music
                 pygame.display.flip
                 if result:
-                # reset game
+                    # reset game
                     Froggie.image = pygame.image.load("./Images/Froggie/Down/Forward.png")  # reset froggie sprite
                     Froggie.rect.topleft = Starting_Point  # reposition froggie to the start
                     cars = []  # remove all cars
@@ -317,5 +337,3 @@ while (True):
 
     all_sprites.draw(Game_Screen)
     pygame.display.flip()
-
-    
