@@ -9,14 +9,17 @@ import os ## Debug
 #-----------------------------------------------------------------------------------------------------------------------
 ## Defining and building of the player class. ##
 class Froggie(pygame.sprite.Sprite):
-    def __init__ (self, position, groups):
+    def __init__ (self, position, groups, blockers, blocker_mask_dict):
         self.pos = pygame.math.Vector2(position)
+        self.blockers = blockers
+        self.blocker_mask_dict = blocker_mask_dict
         super().__init__(groups)
         self.import_assets()
         print(self.animations) ## Debug
         self.frame_index = 0
         self.move_dir = "Forward"
         self.image = self.animations["Forward"][self.frame_index]
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect(center = position)
         self.direction = pygame.math.Vector2((0, 0))
         self.speed = 75
@@ -44,8 +47,22 @@ class Froggie(pygame.sprite.Sprite):
                     surf = pygame.image.load(Image).convert_alpha()
                     surf = pygame.transform.scale(surf, (100, 100))
                     self.animations[subfolder].append(surf)
+#----------------------------------------------------------------------------------------------------------------------#
+    def is_blocked(self, future_direction):
+        future_rect = self.rect.move((self.speed * future_direction[0], self.speed * future_direction[1]))
 
-#-----------------------------------------------------------------------------------------------------------------------
+        for blocker in self.blockers:
+            img, rect = blocker  # Unpack the image and rect from the blocker tuple
+            # Check the future position for collisions, not the current position
+            blocker_mask = self.blocker_mask_dict[(rect.x, rect.y, rect.width, rect.height)]
+            offset_x = rect.x - future_rect.x
+            offset_y = rect.y - future_rect.y
+            if blocker_mask.overlap(self.mask, (offset_x, offset_y)):
+                return True
+
+        return False
+
+    #-----------------------------------------------------------------------------------------------------------------------
 ## The movement for Froggie is defined here ##
 
     def move_player(self, deltaTime):
@@ -67,12 +84,12 @@ class Froggie(pygame.sprite.Sprite):
     def input(self):
         Counter = 0
         keyboard_keys = pygame.key.get_pressed()
-        if (keyboard_keys[pygame.K_LEFT] or keyboard_keys[pygame.K_a]):
+        if (keyboard_keys[pygame.K_LEFT] or keyboard_keys[pygame.K_a]) and not self.is_blocked((-1, 0)):
             self.direction.x = -1
             self.move_dir = 'Left'
             Counter += 1
             self.Jump_Sound.play()
-        elif (keyboard_keys[pygame.K_RIGHT ] or keyboard_keys[pygame.K_d]):
+        elif (keyboard_keys[pygame.K_RIGHT ] or keyboard_keys[pygame.K_d]) and not self.is_blocked((1, 0)):
             self.direction.x = 1
             self.move_dir = 'Right'
             Counter += 1
@@ -80,12 +97,12 @@ class Froggie(pygame.sprite.Sprite):
         else:
             self.direction.x = 0
 
-        if (keyboard_keys[pygame.K_UP] or keyboard_keys[pygame.K_w]):
+        if (keyboard_keys[pygame.K_UP] or keyboard_keys[pygame.K_w]) and not self.is_blocked((0, -1)):
             self.direction.y = -1
             self.move_dir = 'Forward'
             Counter += 1
             self.Jump_Sound.play()
-        elif (keyboard_keys[pygame.K_DOWN] or keyboard_keys[pygame.K_s]):
+        elif (keyboard_keys[pygame.K_DOWN] or keyboard_keys[pygame.K_s]) and not self.is_blocked((0, 1)):
             self.direction.y = 1
             self.move_dir = 'Down'
             Counter += 1

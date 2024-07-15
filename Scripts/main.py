@@ -178,6 +178,17 @@ tree2_positions = [(715,565),(20,310),(50,50),(200,50),(350,50),(500,50),(650,50
 for pos in tree2_positions:
     rect4 = tree2_scale.get_rect(topleft=pos)
     tree2_rects.append(rect4)
+barriers = [(barrier_scale, rect) for rect in barrier_rects]
+bushes = [(bush_scale, rect) for rect in bush_rects]
+trees1 = [(tree1_scale, rect) for rect in tree1_rects]
+trees2 = [(tree2_scale, rect) for rect in tree2_rects]
+
+blockers = barriers + bushes + trees1 + trees2
+
+blocker_mask_dict = {}
+for img, rect in blockers:
+    mask = pygame.mask.from_surface(img)
+    blocker_mask_dict[(rect.x, rect.y, rect.width, rect.height)] = mask
 
 #************************************************************************************************************
 Clock = pygame.time.Clock()
@@ -191,7 +202,7 @@ roads = [150, 400, 650]  # these will define the three different roads
 all_sprites = AllSprites()
 obstacle_sprites = pygame.sprite.Group()
 Starting_Point = (750, 800)  # Bottom of the y-axis, middle of the x-axis
-Froggie = Froggie(Starting_Point, all_sprites)
+Froggie = Froggie(Starting_Point, all_sprites, blockers, blocker_mask_dict)
 
 #-----------------------------------------------------------------------------------------------------------------------
 ## The back ground music is imported and played in a loop ##
