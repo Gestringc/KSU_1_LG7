@@ -1,13 +1,13 @@
 # This file creates the Froggie sprite, defines movements, defines animation, and defines collision
-#-----------------------------------------------------------------------------------------------------------------------
-## Importing of needed functions and variables.##
+#----------------------------------------------------------------------------------------------------------------------#
+## Import of functions ##
+
 import pygame
 import sys
 from os import walk
-import os ## Debug
 
-#-----------------------------------------------------------------------------------------------------------------------
-## Defining and building of the player class. ##
+#----------------------------------------------------------------------------------------------------------------------#
+## Defining and building of the FroggieI class ##
 class Froggie(pygame.sprite.Sprite):
     def __init__ (self, position, groups, blockers, blocker_mask_dict):
         self.pos = pygame.math.Vector2(position)
@@ -23,18 +23,15 @@ class Froggie(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center = position)
         self.direction = pygame.math.Vector2((0, 0))
         self.speed = 75
-        self.collision_objects = 0 ##Collision_Group
+        self.collision_objects = 0
         self.hitbox = self.rect.inflate(0, -self.rect.height/2)
         self.Jump_Sound = pygame.mixer.Sound("./Music/Jump2.mp3")
         self.Jump_Sound.set_volume(0.2)
 
-#-----------------------------------------------------------------------------------------------------------------------
-## Need to define the collision with objects, to be finished ##
-#-----------------------------------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------------------------------#
 ## Images for Froggie import ##
     def import_assets(self):
         Main_Path = "./Images/Froggie"
-        print(os.path.isdir(Main_Path)) ## Debug
         self.animations = {}
         for (index, folder) in enumerate(walk(Main_Path)):
             if (index == 0):
