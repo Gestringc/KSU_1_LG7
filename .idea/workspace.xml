@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b1acf5a-a2a7-4cfa-8ede-d0eec1ff959e" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/Scripts/Screens.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/log_generation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/blockers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/KSU_1_LG7.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/KSU_1_LG7.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_23_2024_11_53_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_23_2024_11_53_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Cars.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Scripts/Froggie.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Froggie.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Music/Froggie_Music.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Music/Music1.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Music/Music1.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Screens.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Screens.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/log_generation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/log_generation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scripts/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

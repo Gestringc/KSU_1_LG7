@@ -6,6 +6,7 @@ from Scripts.Froggie import Froggie
 import pygame.freetype
 from Screens import end_game_screen, pause_game_screen
 from log_generation import generate_log_positions
+from blockers import Barrier, Bush, Tree1, Tree2
 
 #----------------------------------------------------------------------------------------------------------------------#
 ## Initialization of pygame and freetype ##
@@ -20,14 +21,20 @@ class Car:
         self.image = img
         self.speed = speed
         self.rect = rect
-
 #----------------------------------------------------------------------------------------------------------------------#
-## Game screen initialization and background music ##
+## Game screen initialization and sound ##
 
 Game_Screen = pygame.display.set_mode((1500, 800))
+screen_width = 1500
+screen_height = 800
 Froggie_Music = pygame.mixer.Sound("./Music/Music1.mp3")
-Froggie_Music.set_volume(.2)
+Froggie_Music.set_volume(0.6)
 Froggie_Music.play(-1)
+Splash = pygame.mixer.Sound("./Music/SPLASH.mp3")
+Splash.set_volume(1)
+Crash = pygame.mixer.Sound("./Music/CRASH.mp3")
+Crash.set_volume(0.8)
+
 
 #----------------------------------------------------------------------------------------------------------------------#
 ## Loading of files, and creation of font ##
@@ -66,17 +73,7 @@ dead_image = pygame.transform.scale(dead_image, (800, 400))
 pond_size = (375, 170)
 log_size = (125, 30)
 all_log_positions = []
-pond_positions = [
-    # pond 1 in Grass lane 2
-    (0, 480),
-    # pond 2 in Grass lane 2
-    (750, 480),
-
-    # pond 3 in Grass lane 3
-    (200, 230),
-    # pond 4 in Grass lane 3
-    (800, 230),
-]
+pond_positions = [(0, 480), (750, 480), (200, 230), (800, 230)]
 car_images = [redCar_scale, greenCar_scale, yellowCar_scale]
 car_speeds = [150, 100, 200]
 car_positions = [pygame.Rect(0, 150, 50, 50), pygame.Rect(0, 400, 50, 50),
@@ -90,10 +87,10 @@ intervals = [2, 3, 5]
 roads = [150, 400, 650]  # these will define the three different roads
 all_sprites = pygame.sprite.Group()
 obstacle_sprites = pygame.sprite.Group()
-Starting_Point = (750, 800)
+Starting_Point = (750, 775)
 
 #----------------------------------------------------------------------------------------------------------------------#
-## Creation of rects ##
+## Creation of rects, definition of positions, creation of sprites ##
 
 for pond_position in pond_positions:
     log_positions = generate_log_positions(pond_position, pond_size, log_size)
@@ -101,25 +98,36 @@ for pond_position in pond_positions:
 pond_rects = [pygame.Rect(x, y, pond.get_width(), pond.get_height()) for x, y in pond_positions]
 log_rects = [pygame.Rect(x, y, log.get_width(), log.get_height()) for x, y in all_log_positions]
 
-redCar_scale_rect = pygame.Rect(0, 800 // 3, 50, 50)
-greenCar_scale_rect = pygame.Rect(0, 800 // 2, 50, 50)
-yellowCar_scale_rect = pygame.Rect(0, 2 * (800 // 3), 50, 50)
-
 barrier_rects = []
 barrier_positions = [(500, 645), (455, 645), (1035, 145), (920, 145), (305, 400), (425, 400),(1265,645),
                      (1155,645),(1265,460),(1310,460),(750,705),(695,705),(805,705),(650,400),(750,210),(580,210)]
+barriers = pygame.sprite.Group()
+for pos in barrier_positions:
+    new_barrier = Barrier(barrier_scale, pos)
+    barriers.add(new_barrier)
+
 for pos in barrier_positions:
     rect = barrier_scale.get_rect(topleft=pos)
     barrier_rects.append(rect)
 
 bush_rects = []
 bush_positions = [(150,235),(580,365),(525,500),(650,235),(690,235)]
+bushes = pygame.sprite.Group()
+for pos in bush_positions:
+    new_bush = Bush(bush_scale, pos)
+    bushes.add(new_bush)
+
 for pos in bush_positions:
     rect2 = bush_scale.get_rect(topleft=pos)
     bush_rects.append(rect2)
 
 tree1_rects = []
 tree1_positions = [(1400,340), (1300,340), (1200,340), (1250,240),(1350,240), (1450,240)]
+trees1 = pygame.sprite.Group()
+for pos in tree1_positions:
+    new_tree1 = Tree1(tree1_scale, pos)
+    trees1.add(new_tree1)
+
 for pos in tree1_positions:
     rect3 = tree1_scale.get_rect(topleft=pos)
     tree1_rects.append(rect3)
@@ -127,32 +135,38 @@ for pos in tree1_positions:
 tree2_rects = []
 tree2_positions = [(715,565),(20,310),(50,50),(200,50),(350,50),(500,50),
                    (650,50),(800,50),(950,50),(1100,50),(1250,50),(1400,50)]
+trees2 = pygame.sprite.Group()
+for pos in tree2_positions:
+    new_tree2 = Tree2(tree2_scale, pos)
+    trees2.add(new_tree2)
+
 for pos in tree2_positions:
     rect4 = tree2_scale.get_rect(topleft=pos)
     tree2_rects.append(rect4)
 
-barriers = [(barrier_scale, rect) for rect in barrier_rects]
 
-bushes = [(bush_scale, rect) for rect in bush_rects]
-
-trees1 = [(tree1_scale, rect) for rect in tree1_rects]
-
-trees2 = [(tree2_scale, rect) for rect in tree2_rects]
 
 #----------------------------------------------------------------------------------------------------------------------#
 ## Creation of masks ##
 
 pond_masks = [pygame.mask.from_surface(pond) for _ in pond_positions]
 log_masks = [pygame.mask.from_surface(log) for _ in log_positions]
-blockers = barriers + bushes + trees1 + trees2
-blocker_mask_dict = {}
-for img, rect in blockers:
-    mask = pygame.mask.from_surface(img)
-    blocker_mask_dict[(rect.x, rect.y, rect.width, rect.height)] = mask
+blockers = list(barriers.sprites()) + list(bushes.sprites()) + list(trees1.sprites()) + list(trees2.sprites())
+for blocker in blockers:
+    if isinstance(blocker, Barrier):
+        img = blocker.image
+        rect = blocker.rect
+        mask = blocker.mask
+    else:
+        img = blocker.image
+        rect = blocker.rect
+        mask = pygame.mask.from_surface(img)
 #----------------------------------------------------------------------------------------------------------------------#
 ## Froggie Sprite Generation  ##
 
-Froggie = Froggie(Starting_Point, all_sprites, blockers, blocker_mask_dict)
+Froggie = Froggie(Starting_Point, all_sprites, barriers, bushes, trees1, trees2, screen_width, screen_height)
+
+
 
 #----------------------------------------------------------------------------------------------------------------------#
 ## Primary Game Loop ##
@@ -167,12 +181,11 @@ while (True):
             if event.key == pygame.K_ESCAPE:
                 original_position = Froggie.rect.topleft
                 Froggie.rect.topleft = original_position
-                pygame.mixer.pause()  # pause game music
                 pygame.display.flip
-                result = pause_game_screen("Game Paused", Game_Screen, button_font, dead_image, font)
+                result = pause_game_screen("Game Paused", Game_Screen,
+                                           button_font, dead_image, font, Froggie_Music)
                 if result:
                     Froggie.rect.topleft = Froggie.rect.topleft
-                    pygame.mixer.unpause()  # resume the music
                 else:
                     pygame.quit()
                     sys.exit()
@@ -212,28 +225,28 @@ while (True):
                       Froggie.rect.topleft[1] - car.rect.topleft[1])
             collision_point = frog_mask.overlap(car_mask, offset)
             if pygame.sprite.collide_mask(Froggie, car):
-                result = end_game_screen("Froggie Got Hit!!!", Game_Screen, button_font, dead_image, font)
-                Froggie.pos = pygame.math.Vector2(Starting_Point)  # update the Vector2 position
-                Froggie.rect.topleft = Starting_Point  # update the topleft rect attribute
+                Crash.play(0)
+                result = end_game_screen("Froggie Got Hit!!!",
+                                         Game_Screen, button_font, dead_image, font, Froggie_Music)
+                Froggie.pos = pygame.math.Vector2(Starting_Point)
+                Froggie.rect.topleft = Starting_Point
                 Froggie.image = dead_image
-                pygame.mixer.pause()  # pause game music
                 pygame.display.flip
                 if result:
-                    # reset game
-                    Froggie.image = pygame.image.load("./Images/Froggie/Down/Forward.png")  # reset froggie sprite
-                    Froggie.rect.topleft = Starting_Point  # reposition froggie to the start
-                    cars = []  # remove all cars
-                    counter = [0, 0, 0]  # reset car generation timer
-                    pygame.mixer.unpause()  # resume the music
+                    Froggie.image = pygame.image.load("./Images/Froggie/Down/Forward.png")
+                    Froggie.rect.topleft = Starting_Point
+                    cars = []
+                    counter = [0, 0, 0]
                 else:
                     pygame.quit()
                     sys.exit()
             elif Froggie.rect.y <= 0:
-                result = end_game_screen("Froggie Lives!!!", Game_Screen, button_font, dead_image, font)
-                Froggie.pos = pygame.math.Vector2(Starting_Point)  # update the Vector2 position
-                Froggie.rect.topleft = Starting_Point  # update the topleft rect attribute
+                result = end_game_screen("Froggie Lives!!!", Game_Screen
+                                         , button_font, dead_image, font, Froggie_Music)
+                Froggie.pos = pygame.math.Vector2(Starting_Point)
+                Froggie.rect.topleft = Starting_Point
                 Froggie.image = dead_image
-                pygame.mixer.pause()  # pause game music
+                pygame.mixer.pause()
                 pygame.display.flip
                 if result:
                     # reset game
@@ -262,28 +275,28 @@ while (True):
 
     for total_pond_rects, safe_pond_rect in zip(total_pond_rects, safe_pond_rects):
         if total_pond_rects.collidepoint(Froggie.rect.center) and not safe_pond_rect.collidepoint(Froggie.rect.center):
-            result = end_game_screen("You drowned Froggie!", Game_Screen, button_font, dead_image, font)
+            Splash.play(0)
+            result = end_game_screen("You drowned Froggie!", Game_Screen,
+                                     button_font, dead_image, font, Froggie_Music)
             Froggie.pos = pygame.math.Vector2(Starting_Point)
             Froggie.rect.topleft = Starting_Point
 
             if result:
-                # reset game
-                Froggie.image = pygame.image.load("./Images/Froggie/Down/Forward.png")  # reset froggie sprite
-                Froggie.rect.topleft = Starting_Point  # reposition froggie to the start
-                cars = []  # remove all cars
-                counter = [0, 0, 0]  # reset car generation timer
-                pygame.mixer.unpause()  # resume the music
+                Froggie.image = pygame.image.load("./Images/Froggie/Down/Forward.png")
+                Froggie.rect.topleft = Starting_Point
+                cars = []
+                counter = [0, 0, 0]
             else:
                 pygame.quit()
                 sys.exit()
-    # Car generation
+
     color_indexes = [0, 1, 2]
     for i in range(3):
         counter[i] += Delta_Time
         if counter[i] >= intervals[i]:
             counter[i] = 0
             car_image = pygame.transform.scale(car_images[car_color_index % len(car_images)], (50, 50))
-            new_car = Car(car_image, car_speeds[i], pygame.Rect(0, roads[i], 50, 50))  # create new car
+            new_car = Car(car_image, car_speeds[i], pygame.Rect(0, roads[i], 50, 50))
             cars.append(new_car)
             car_color_index += 1
 
@@ -291,6 +304,7 @@ while (True):
         Game_Screen.blit(pond, pos)
     for log_position in all_log_positions:
         Game_Screen.blit(log, log_position)
+
 
     all_sprites.draw(Game_Screen)
     pygame.display.flip()
